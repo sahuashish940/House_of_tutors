@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const posters = [
   "/images/poster1.jpeg",
@@ -24,10 +25,11 @@ export default function HeroSection() {
       {/* Poster Section */}
       <div className="w-full lg:w-1/2 flex items-center justify-center">
         <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-lg">
-          <img
+          <Image
             src={posters[currentPoster]}
-            alt="Poster"
-            className="object-cover h-full w-full transition-opacity duration-1000"
+            alt={`Poster ${currentPoster + 1}`}
+            fill
+            className="object-cover transition-opacity duration-1000"
           />
         </div>
       </div>
@@ -41,6 +43,7 @@ export default function HeroSection() {
           Learn from top instructors with personalized attention.
         </p>
         <form className="space-y-4">
+          {/* Name Field */}
           <div>
             <label
               htmlFor="name"
@@ -55,6 +58,8 @@ export default function HeroSection() {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#813588] focus:border-[#813588]"
             />
           </div>
+
+          {/* Email Field */}
           <div>
             <label
               htmlFor="email"
@@ -69,6 +74,8 @@ export default function HeroSection() {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#813588] focus:border-[#813588]"
             />
           </div>
+
+          {/* Phone Field */}
           <div>
             <label
               htmlFor="phone"
@@ -83,6 +90,8 @@ export default function HeroSection() {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#813588] focus:border-[#813588]"
             />
           </div>
+
+          {/* State Dropdown */}
           <div>
             <label
               htmlFor="state"
@@ -100,6 +109,8 @@ export default function HeroSection() {
               <option>Texas</option>
             </select>
           </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-[#813588] text-white py-2 px-4 rounded-md shadow-sm hover:bg-[#6b2b72] transition"

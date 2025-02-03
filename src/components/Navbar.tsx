@@ -14,16 +14,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/">
-              <a className="flex items-center">
-                <Image
-                  src="/images/circle-cropped.png" // Corrected path
-                  alt="Logo"
-                  width={56} // Adjust dimensions as needed
-                  height={56}
-                  className="h-14 w-auto"
-                />
-              </a>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/circle-cropped.png"
+                alt="Logo"
+                width={56}
+                height={56}
+                className="h-14 w-auto"
+              />
             </Link>
           </div>
 
@@ -56,10 +54,12 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-6">
             {/* Menu Links */}
             {["Home", "Services", "Testimonial", "Contact"].map((item, index) => (
-              <Link key={index} href={`#${item.toLowerCase()}`}>
-                <a className="text-sm font-medium hover:text-yellow-300 transition duration-300 ease-in-out">
-                  {item}
-                </a>
+              <Link
+                key={index}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm font-medium hover:text-yellow-300 transition duration-300 ease-in-out"
+              >
+                {item}
               </Link>
             ))}
 
@@ -88,13 +88,13 @@ export default function Navbar() {
       >
         <div className="space-y-4 px-4 py-6 text-center">
           {["Home", "Services", "Testimonial", "Contact"].map((item, index) => (
-            <Link key={index} href={`#${item.toLowerCase()}`}>
-              <a
-                className="block text-sm font-medium hover:text-yellow-300 transition duration-300 ease-in-out"
-                onClick={() => setIsOpen(false)}
-              >
-                {item}
-              </a>
+            <Link
+              key={index}
+              href={`#${item.toLowerCase()}`}
+              className="block text-sm font-medium hover:text-yellow-300 transition duration-300 ease-in-out"
+              onClick={() => setIsOpen(false)}
+            >
+              {item}
             </Link>
           ))}
         </div>

@@ -11,6 +11,8 @@ const posters = [
 
 export default function HeroSection() {
   const [currentPoster, setCurrentPoster] = useState(0);
+  const [customCity, setCustomCity] = useState(""); // For other city input
+  const [city, setCity] = useState(""); // Selected city
 
   // Loop through posters every 5 seconds
   useEffect(() => {
@@ -59,22 +61,6 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Email Field */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#813588] focus:border-[#813588]"
-            />
-          </div>
-
           {/* Phone Field */}
           <div>
             <label
@@ -91,23 +77,80 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* State Dropdown */}
+          {/* Tuition For Dropdown */}
           <div>
             <label
-              htmlFor="state"
+              htmlFor="tuition"
               className="block text-sm font-medium text-gray-700"
             >
-              State
+              Tuition For
             </label>
             <select
-              id="state"
+              id="tuition"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#813588] focus:border-[#813588]"
             >
-              <option>Select your state</option>
-              <option>California</option>
-              <option>New York</option>
-              <option>Texas</option>
+              <option value="">Select Class</option>
+              {[...Array(13)].map((_, index) =>
+                index === 0 ? (
+                  <option key={index} value="playgroup">
+                    Play Group
+                  </option>
+                ) : (
+                  <option key={index} value={`class-${index}`}>
+                    Class {index}
+                  </option>
+                )
+              )}
             </select>
+          </div>
+
+          {/* City Dropdown with Dynamic Input */}
+          <div>
+            <label
+              htmlFor="city"
+              className="block text-sm font-medium text-gray-700"
+            >
+              City
+            </label>
+            <select
+              id="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#813588] focus:border-[#813588]"
+            >
+              <option value="">Select City</option>
+              <option value="GUNA">GUNA</option>
+              <option value="INDORE">INDORE</option>
+              <option value="Other">Other</option>
+            </select>
+
+            {city === "Other" && (
+              <div className="mt-4">
+                <label
+                  htmlFor="customCity"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Enter Your City
+                </label>
+                <input
+                  id="customCity"
+                  type="text"
+                  value={customCity}
+                  onChange={(e) => setCustomCity(e.target.value)}
+                  list="city-suggestions"
+                  placeholder="Type your city name"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#813588] focus:border-[#813588]"
+                />
+                <datalist id="city-suggestions">
+                  {/* Replace this list with dynamic suggestions */}
+                  <option value="Mumbai" />
+                  <option value="Delhi" />
+                  <option value="Bangalore" />
+                  <option value="Chennai" />
+                  <option value="Kolkata" />
+                </datalist>
+              </div>
+            )}
           </div>
 
           {/* Submit Button */}
